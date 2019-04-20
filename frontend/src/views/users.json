@@ -1,0 +1,17 @@
+[{
+    "username":"moshe",
+    "password":"123",
+    "userActivities":[{"favorited":[]},{"attended":[]}],
+    "isAdmin":true,
+    "birthDate":"",
+    "email":"tralala@gmail.com"
+},
+{
+    "username":"mikl",
+    "password":"123",
+    "userActivities":[{"favorited":[]},{"attended":[]}],
+    "isAdmin":false,
+    "birthDate":"",
+    "email":"tral@gmail.com"
+}
+]
