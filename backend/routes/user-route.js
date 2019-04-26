@@ -1,6 +1,9 @@
 const userService = require('../services/user-service')
 const reviewService = require('../services/review-service')
 const BASE = '/user'
+function deleteOneUser(){
+    userService.updateUser();
+}
 
 function addRoutes(app) {
     app.post(`${BASE}/registeruser`, (req, res) => {
@@ -47,6 +50,17 @@ function addRoutes(app) {
         userService.addUser({ nickname })
             .then(user => res.json(user))
     })
+    app.post(`${BASE}/update`,(req,res)=>{
+        console.log('user route',req.body);
+        const userToUpdate=req.body;
+        console.log('from user route ',userToUpdate)
+        userService.updateUser(userToUpdate).then(user=>{
+            req.session.user=user;
+            res.json(user);
+        })
+    })
+
+
 
     app.put('/login', (req, res) => {
         const nickname = req.body.nickname

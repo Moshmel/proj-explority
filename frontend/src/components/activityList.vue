@@ -29,7 +29,6 @@ export default {
     loaded() {
       this.loadedCount += 1;
       if (this.loadedCount > 4) {
-        console.log("finished!!!");
         this.$emit("finishedloading");
         this.loadedCount = 0;
       }

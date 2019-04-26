@@ -7,7 +7,7 @@ export default {
     query,
     getById, checkLogin,
     add,
-    // update,
+     update,
     // getEmpty
 }
 
@@ -42,5 +42,15 @@ function query() {
 function getById(activityId) {
     return axios.get(`${BASE_URL}/${activityId}`)
         .then(resolveData);
+}
+
+function update(user){
+    console.log('update frontend')
+    console.log('user that goted!!',user)
+    return axios.post(`${BASE_URL}/user/update`, user)
+    .then((res) => {
+        console.log('user return frontend service', res)
+        return res;
+    })
 }
 

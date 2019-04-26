@@ -73,9 +73,13 @@ export default {
     },
     addToPlan(activity) {
       this.plannedActivities.push(activity);
+      this.$store.dispatch({type:'addToFavorite',activity : activity});
+          this.$store.dispatch("updateUser");
     },
     book(activity) {
-      this.activityToBook = activity;
+
+      this.$store.dispatch({type:'bookAnActivity',activity:activity});
+          this.$store.dispatch("updateUser");
     },
     filter(filterBy) {
       this.$emit("filter", filterBy);
@@ -92,11 +96,14 @@ export default {
     }
   },
   created() {
+   console.log('start dispatching');
+    this.$store.dispatch("updateUser");
     if (localStorage.getItem("route")) {
       this.currRoute = JSON.parse(localStorage.getItem("route"));
       console.log(this.route);
       plannedActivities.push({ a: 4 });
     }
+ 
   },
   computed: {
     plannedCount() {

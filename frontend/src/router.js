@@ -4,13 +4,23 @@ import Home from './views/Home.vue';
 import City from './pages/City.vue';
 import activityDetails from './components/acitivityDetails.vue';
 import addNewAcitivity from './pages/addNewAcitivity.vue';
-
+import myActivities from './components/myActivities.vue'
 import resultCmp from './components/resultCmp'
+import about from './components/aboutCmp'
 Vue.use(Router)
 
 export default new Router({
   routes: [
-
+     {
+      path: '/about',
+      name: 'my-activities',
+      component: about
+    },
+    {
+      path: '/my-activities',
+      name: 'my-activities',
+      component: myActivities
+    },
     
     {
       path: '/',

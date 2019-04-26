@@ -93,7 +93,6 @@ export default {
       });
     }
     setTimeout(()=>{
-      console.log('from nowwwwwwwwwwwwwwwwwwwwwwwwwwww')
       this.filter('All')},4000)
       
   },
@@ -103,7 +102,6 @@ export default {
       this.isLoading=false;
     },
     onBooked() {
-      console.log("on google mappppssssssssssssssssssssssssssssssssss");
       this.$store.dispatch("onbooked");
     },
     onSearched(route) {
@@ -111,7 +109,6 @@ export default {
       this.getRoute();
     },
     view(activity) {
-      console.log(activity);
     },
     removeActivity(googleId) {
       var idx = this.addedActivities.findIndex(activity => {
@@ -129,7 +126,7 @@ export default {
       });
       if (found) {
         //TODO ALREADY ADDED ACTIVITY
-        console.log("Activity was added aleardy");
+
         return;
       }
       this.addedActivities.push(activity);
@@ -166,7 +163,6 @@ export default {
 
         localStorage.setItem("added", JSON.stringify(this.addedActivities));
         localStorage.setItem("markers", JSON.stringify(this.markers));
-        console.log("markers", this.markers);
       });
     },
 
@@ -219,7 +215,6 @@ export default {
             (r, s) => {
               if (r) {
                 r.forEach(place => {
-                  console.log(place ,'this is the activity')
                   if (place.types.includes("locality"))
                     this.cities.push(place.name);
                   if (!place.rating || !place.photos) return;
@@ -280,7 +275,6 @@ export default {
   created() {
     
     this.getRoute(this.route);
-    console.log('this is the route mann!!',this.route)
   }
 };
 </script>

@@ -43,8 +43,8 @@
 <script>
 import { EventBus } from "@/eventBus.js";
 import mapService from "../services/mapService.js";
-import activityPreview from './activityPreviewSmall'
 import GoogleMap from "./GoogleMap";
+import activityPreview from './activityPreviewSmall';
 import { Carousel, Slide } from 'vue-carousel';
 export default {
     props:["route","plannedActivities"],

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 const userKey = "userSession";
 import activityService from './services/activity-Service.js';
+import userService from './services/user-service.js';
 import storageService from './services/storageService.js'
 import socketService from './services/socket-service.js'
 import { EventBus } from '@/eventBus'
@@ -52,10 +53,26 @@ export default new Vuex.Store({
     setNewPlace(state, { currActivity }) {
       let newActivity = activityService.createActivity(currActivity);
       state.currActivity.unshift(newActivity);
+    },
+    bookAnActivity(state,payload)
+    {
+      console.log('changing boook!!!',payload.activity);
+      state.user.userActivities[1].attended.push(payload.activity);
+      console.log('')
     }
+    
   },
   getters: {
-
+    userAttendedActivities(state)
+    {
+      return state.user.userActivities[1]
+    }
+    ,
+    userFavoritedActivities(state)
+    {
+      return state.user.userActivities[0]
+    }
+    ,
     activitiesForDisplay(state) {
       return state.activitiesForDisplay
     },
@@ -68,6 +85,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    updateUser(context,payload)
+    {
+      let curUser=context.getters.user;
+      console.log('curr user is ',curUser);
+      userService.update(curUser);
+    },
+    bookAnActivity(context,payload){
+      console.log('activity is ',payload.activity);
+      context.commit({ type: 'bookAnActivity', activity: payload.activity });
+    },
     userCount(context, payload) {
       
       EventBus.$emit('usercount', payload.online);

@@ -43,7 +43,21 @@ function query() {
     return mongoService.connect()
         .then(db => db.collection('user').find({}).toArray())
 }
-
+function updateUser(user={})
+{
+    console.log('user in backend user sevice',user)
+    return mongoService.connect()
+    .then((db)=>{
+        let id=user._id;
+        console.log('user id is ',id)
+        delete user._id;
+        return db.collection('user')
+    .replaceOne({"_id":ObjectId(id)},
+    {$set:user}
+    )
+ 
+}).catch(console.log('nooo!'));
+}
 function addUser(user) {
     return mongoService.connect()
         .then(db => db.collection('user').insertOne(user))
@@ -77,7 +91,7 @@ module.exports = {
     getById,
     checkLogin,
     addUser,
-    // checkLogin
+    updateUser
 }
 
 
