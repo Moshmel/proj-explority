@@ -207,6 +207,7 @@ h1 {
     width: 100vw;
   }
   .responli {
+        width: 100vw;
     display: block !important;
     border-top: 1px solid rgb(235, 235, 235);
     background-color: white;

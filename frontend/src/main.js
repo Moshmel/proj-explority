@@ -5,8 +5,8 @@ import store from './store'
 import VueSocketIO from 'vue-socket.io'
 import * as VueGoogleMaps from "vue2-google-maps";
 import './registerServiceWorker'
-// import vuejQuery from 'vue-jquery';
 import moment from 'moment'
+
 // import '@/assets/helpers.css'
 // import '@/assets/reset.css'
 import '@/assets/scss/main.scss'

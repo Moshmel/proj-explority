@@ -1,6 +1,7 @@
 
 <template>
   <section class="my-activities ">
+    <div class="main-wrapper">
     <div class="personal-details">
       <div class="user-img">
         <img src="../../img/review2.jpg">
@@ -15,13 +16,13 @@
         <h1> favorited</h1>
             <div class="carousel-container">
           <carousel
-            adjustableHeight="true"
-            navigationEnabled="true"
-            paginationEnabled="false"
-            speed="300"
+           adjustableHeight=true
+            navigationEnabled=true
+            paginationEnabled=false
+            speed=1000
           >
             <slide class="slide" v-for="activity in favorited" :key="activity.googleId">
-              <activity-preview :activity="activity"></activity-preview>
+              <activity-preview @clicked="onClickChild" :activity="activity" ></activity-preview>
             </slide>
           </carousel>
         </div>
@@ -29,10 +30,10 @@
       <div class="booked-activities"> <h1>booked</h1>
                   <div class="carousel-container">
           <carousel
-            adjustableHeight="true"
-            navigationEnabled="true"
-            paginationEnabled="false"
-            speed="300"
+           adjustableHeight=true
+            navigationEnabled=true
+            paginationEnabled=false
+            speed=1000
           >
             <slide class="slide" v-for="activity in attended" :key="activity.googleId">
               <activity-preview :activity="activity"></activity-preview>
@@ -40,6 +41,7 @@
           </carousel>
         </div>
       </div>
+    </div>
     </div>
   </section>
 </template>
@@ -58,13 +60,15 @@ export default {
   },
   mounted() {},
   created() {
-    // var id = this.$route.params.id;
-    // activityService.getById(id).then(res => {
-    //   this.activity = res.activity;
-    //   console.log(this.activity);
-    // });
+ 
   },
-  methods: {},
+  methods: {
+    onClickChild(value)
+    {
+      console.log('e')
+      console.log("this is activity to delete ",value)
+    }
+  },
   components: {
     Carousel,
     Slide,activityPreview
@@ -75,12 +79,18 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Dosis:600");
+.main-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
 .slide {
   width: 256px;
 }
 .right-section{
   width:66%;
   margin-top:26px;
+  margin-left:26px;
+  margin-right:26px;
 }
 .wrapper {
   margin: 0 auto;
@@ -128,10 +138,32 @@ h2 {
 }
 .personal-details {
   margin-top: 26px;
-  width: 325px;
+    padding: 24px;
+    width:290px;
+    height: 305px;
   border: 1px solid rgb(228, 228, 228);
 }
 .carousel-container{
-  margin-top:32px
+  margin-top:32px;
+  width:60vw;
+}
+@media (max-width: 1000px)
+{
+  .main-wrapper{
+    flex-direction:column;
+  }
+  .carousel-container{
+    width:80vw;
+    
+  }
+}
+@media (max-width: 450px)
+{
+  .main-wrapper{
+        margin: 0 auto;
+  }
+  .carousel-container{
+  width: 62vw;
+  }
 }
 </style>

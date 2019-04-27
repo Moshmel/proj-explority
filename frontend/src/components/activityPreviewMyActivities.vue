@@ -6,21 +6,18 @@
     <div class="info-container">
       <div class="title-section flex row space-between">
       <h1 class="title-tag">{{title}}</h1>
-      <button @click.stop.prevent="removeActivity" class="remove-btn">
-        <span >delete</span>
+        <span   class="remove-btn">
+          <img src="../../img/remove-icon.png" @click.stop.prevent="removeActivity"/>
+        </span>
         
-      </button>
+
       </div>
       <star-rating :star-size=15 active-color="#CF4A3F" read-only v-model.number="activity.rating">
       </star-rating>
       <p class="address-tag">{{activity.address}}</p>
       <span class="type-tag">{{type}}</span>
     </div>
-    <!-- <div class="space-between flex bottom-btn"> -->
-      <!-- <button @click.stop.prevent="book(activity)" class="book-btn" v-if="activity.price || activity.type ==='lodging'">Book</button>
-      <span class="free-span" v-if="!activity.price && activity.type !== 'lodging'">Free!</span>
-      <button class="view-details">More</button> -->
-    <!-- </div> -->
+
     </div>
   </div>
 </template>
@@ -29,7 +26,7 @@
 import StarRating from "vue-star-rating";
 
 export default {
-  props: ["activity", "addedActivities"],
+  props: ["activity"],
   components: {
     StarRating
   },
@@ -56,7 +53,9 @@ export default {
   },
   methods: {
     removeActivity(){
-      console.log('deletting');
+      console.log('deletetinssssssssssssssssssssssg')
+      this.$emit('clicked', 'someValue')
+    
     },
     loaded(){
       this.$emit('loaded');
@@ -85,9 +84,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 
 * {
   font-family: "Roboto";
+}
+.remove-btn{
+  
+
+      height: 18px;
+    width: 18px;
+}
+.remove-btn img{
+  width:100%;
+  height: auto;
+  
 }
 .bottom-btn{
 padding: 0 4px;
