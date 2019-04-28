@@ -41,7 +41,7 @@ export default {
                  userService.add({username:this.username,password:this.password,email:this.email})
                  .then(()=>
                  {
-                   console.log("success!! return is signup")
+                  
                      this.$emit('close');
                    })
                  .catch(err=>console.log('badd sign up ',err))

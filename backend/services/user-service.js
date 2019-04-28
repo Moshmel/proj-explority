@@ -33,7 +33,7 @@ function checkLogin(userCredentials) {
                         return userToreturn;
                     }
                     else {
-                        console.log('about to send an error')
+                       
                         return Promise.reject(new Error("bad usernameor password"))
                     }
                 })
@@ -45,11 +45,10 @@ function query() {
 }
 function updateUser(user={})
 {
-    console.log('user in backend user sevice',user)
+   
     return mongoService.connect()
     .then((db)=>{
         let id=user._id;
-        console.log('user id is ',id)
         delete user._id;
         return db.collection('user')
     .replaceOne({"_id":ObjectId(id)},

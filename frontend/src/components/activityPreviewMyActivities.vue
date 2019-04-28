@@ -7,7 +7,7 @@
       <div class="title-section flex row space-between">
       <h1 class="title-tag">{{title}}</h1>
         <span   class="remove-btn">
-          <img src="../../img/remove-icon.png" @click.stop.prevent="removeActivity"/>
+          <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/remove-icon_feq8nx.png" @click.stop.prevent="removeActivity"/>
         </span>
         
 
@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     removeActivity(){
-      console.log('deletetinssssssssssssssssssssssg')
       this.$emit('clicked', 'someValue')
     
     },
@@ -63,7 +62,6 @@ export default {
     ,
     addToPlan(activity) {
       this.activity.added = true
-      console.log(this.activity   )
       this.$emit("addToPlan", this.activity);
     },
     book(activity) {

@@ -56,9 +56,9 @@ export default new Vuex.Store({
     },
     bookAnActivity(state,payload)
     {
-      console.log('changing boook!!!',payload.activity);
+  
       state.user.userActivities[1].attended.push(payload.activity);
-      console.log('')
+ 
     }
     
   },
@@ -88,11 +88,10 @@ export default new Vuex.Store({
     updateUser(context,payload)
     {
       let curUser=context.getters.user;
-      console.log('curr user is ',curUser);
       userService.update(curUser);
     },
     bookAnActivity(context,payload){
-      console.log('activity is ',payload.activity);
+   
       context.commit({ type: 'bookAnActivity', activity: payload.activity });
     },
     userCount(context, payload) {
@@ -104,7 +103,7 @@ export default new Vuex.Store({
       EventBus.$emit('sendpupup');
     },
     onbooked(context, payload) {
-      console.log('booking')
+
       socketService.emit('booked', { booked: 'bookkk!!' })
 
     },
@@ -146,7 +145,6 @@ export default new Vuex.Store({
       }
     },
     addPlace(context, { place }) {
-      console.log('trying to add new place.....');
       return activityService.add(place)
       // .then(place => {
       //   context.commit({ type: 'setNewPlace', place })

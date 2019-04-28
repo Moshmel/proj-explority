@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     book(activityToBook) {
-      console.log("out of modal");
+     
       this.$emit("booked");
     },
     close() {

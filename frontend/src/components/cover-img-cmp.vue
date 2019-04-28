@@ -52,7 +52,6 @@ export default {
       this.$emit("searched", this.route);
     },
     getFixedRoute(e) {
-      console.log(e.target.getAttribute("value"));
       var origin = e.target.getAttribute("value").split(",")[0];
       var dest = e.target.getAttribute("value").split(",")[1];
       var route = { origin: origin, destination: dest };
@@ -62,7 +61,6 @@ export default {
   mounted() {
     this.$refs.vid.playbackRate = 1.2;
     this.$refs.vid.addEventListener("timeupdate", function() {
-      console.log(this.currentTime | 0);
       if (this.currentTime >= 7.4) {
         this.pause();
       }
@@ -88,6 +86,7 @@ export default {
   width: 100%;
 }
 .cover-img {
+  width:100vw;
   font-family: "Lato";
   text-transform: uppercase;
   height: 100vh;
@@ -96,7 +95,7 @@ export default {
   -ms-flex-direction: column;
   flex-direction: column;
   display: -ms-flexbox;
-  background-image: url(../../public/img/bgimg.png);
+  background-image: url("https://res.cloudinary.com/explority/image/upload/v1556370950/bgimg_fb3uzq.png");
 }
 .right-section {
   border: 3px solid;

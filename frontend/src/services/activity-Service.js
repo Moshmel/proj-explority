@@ -11,14 +11,16 @@ export default {
     getByGoogleId,
 }
 
-const BASE_URL = 'http://localhost:3003';
+const BASE_URL = (process.env.NODE_ENV !== 'development')
+ ? ''
+ : 'http://127.0.0.1:3003';
 
 const resolveData = res => res.data;
 
 // const EXPLORITY_KEY = 'kerama';
 
 function query() {
-    return axios.get('http://127.0.0.1:3003/activity')
+    return axios.get(`${BASE_URL}/activity`)
         .then((res) => {
             return res.data
         })

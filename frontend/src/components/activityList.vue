@@ -17,6 +17,12 @@
 import activityPreview from "./activityPreview";
 export default {
   props: ["activities", "addedActivities"],
+  created() {
+    setTimeout(()=>{
+      console.log('emit finish loading')
+      this.$emit("finishedloading");
+    },4000)
+  },
   components: {
     activityPreview
   },

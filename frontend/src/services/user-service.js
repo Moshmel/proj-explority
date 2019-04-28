@@ -11,29 +11,30 @@ export default {
     // getEmpty
 }
 
-const BASE_URL = 'http://localhost:3003';
-
+const BASE_URL = (process.env.NODE_ENV !== 'development')
+ ? ''
+ : 'http://127.0.0.1:3003';
 const resolveData = res => res.data;
-var myUser = { "username": "Themsssssssssikl", "password": "123", "userActivities": [{ "favorited": [] }, { "attended": [] }], "isAdmin": false, "birthDate": "", "email": "trassssl@gmail.com" };
+
 
 function add(user) {
     user.userActivities = [{ "favorited": [] }, { "attended": [] }];
     user.isAdmin = false;
     user.birthDate = "";
-    return axios.post('http://127.0.0.1:3003/user/registeruser', user)
+    return axios.post(`${BASE_URL}/user/registeruser`, user)
         .then((user) => {
             console.log('user return frontend service', user)
             return user;
         })
 }
 function checkLogin(userCredentials) {
-    return axios.post('http://127.0.0.1:3003/user/login',
+    return axios.post(`${BASE_URL}/user/login`,
         userCredentials).then((user) => {
             return user.data;
         });
 }
 function query() {
-    return axios.get('http://127.0.0.1:3003/user')
+    return axios.get(`${BASE_URL}/user`)
         .then((res) => {
             return res.data
         })

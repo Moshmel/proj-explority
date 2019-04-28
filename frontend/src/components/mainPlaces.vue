@@ -66,7 +66,7 @@ export default {
     },
     onBooked() {
       this.$emit("booked");
-      console.log("out of main places");
+     
     },
     onSearch() {
       this.$emit("searched", this.currRoute);
@@ -85,22 +85,21 @@ export default {
       this.$emit("filter", filterBy);
     },
     viewDetails(activity) {
-      console.log("try show detailssss", activity);
       activityService.getByGoogleId(activity).then(res => {
         console.log("this is the res", res);
         this.$router.push("/activity/" + res._id);
       });
     },
     showAdded() {
-      console.log(this.addedActivities);
+      
     }
   },
   created() {
-   console.log('start dispatching');
+   
     this.$store.dispatch("updateUser");
     if (localStorage.getItem("route")) {
       this.currRoute = JSON.parse(localStorage.getItem("route"));
-      console.log(this.route);
+      
       plannedActivities.push({ a: 4 });
     }
  

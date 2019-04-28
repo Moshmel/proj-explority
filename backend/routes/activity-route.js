@@ -1,7 +1,7 @@
 const activityService = require('../services/activity-service')
 const reviewService = require('../services/review-service.js')
 
-console.log('enterd to  activity  rout')
+
 function addActivityRoutes(app) {
     // CARS REST API:
 

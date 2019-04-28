@@ -4,7 +4,7 @@
     <div class="main-wrapper">
     <div class="personal-details">
       <div class="user-img">
-        <img src="../../img/review2.jpg">
+        <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/review2_acdcli.jpg">
       </div>
       <div class="bottom-personal-details">
         <h2>Username : &nbsp &nbsp {{user.username}}</h2>
@@ -65,8 +65,7 @@ export default {
   methods: {
     onClickChild(value)
     {
-      console.log('e')
-      console.log("this is activity to delete ",value)
+  
     }
   },
   components: {
@@ -137,7 +136,9 @@ h2 {
   height: 100%;
 }
 .personal-details {
+  margin:0 auto;
   margin-top: 26px;
+  margin-bottom:26px;
     padding: 24px;
     width:290px;
     height: 305px;

@@ -13,9 +13,10 @@ const app = express()
 
 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080','https://proj-explority.herokuapp.com'],
   credentials: true // enable set cookie
 }));
+app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(session({

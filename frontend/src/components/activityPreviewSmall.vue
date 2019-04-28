@@ -61,7 +61,6 @@ export default {
     ,
     addToPlan(activity) {
       this.activity.added = true
-      console.log(this.activity   )
       this.$emit("addToPlan", this.activity);
     },
     book(activity) {
