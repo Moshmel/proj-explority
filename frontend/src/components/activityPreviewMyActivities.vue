@@ -5,12 +5,10 @@
     <div class="bottom-container">
     <div class="info-container">
       <div class="title-section flex row space-between">
-      <h1 class="title-tag">{{title}}</h1>
-        <span   class="remove-btn">
-          <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/remove-icon_feq8nx.png" @click.stop.prevent="removeActivity"/>
-        </span>
-        
-
+        <h1 class="title-tag">{{title}}</h1>
+          <span   class="remove-btn">
+            <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/remove-icon_feq8nx.png" @click.stop.prevent="removeActivity(activity.googleId)"/>
+          </span>
       </div>
       <star-rating :star-size=15 active-color="#CF4A3F" read-only v-model.number="activity.rating">
       </star-rating>
@@ -52,9 +50,8 @@ export default {
     }
   },
   methods: {
-    removeActivity(){
-      this.$emit('clicked', 'someValue')
-    
+    removeActivity(value){
+      this.$emit('clicked', value)
     },
     loaded(){
       this.$emit('loaded');
@@ -88,15 +85,12 @@ export default {
   font-family: "Roboto";
 }
 .remove-btn{
-  
-
-      height: 18px;
-    width: 18px;
+  height: 18px;
+  width: 18px;
 }
 .remove-btn img{
   width:100%;
-  height: auto;
-  
+  height: auto; 
 }
 .bottom-btn{
 padding: 0 4px;

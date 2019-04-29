@@ -16,7 +16,6 @@ export default new Vuex.Store({
     isConnected: false,
     user: 0,
     currActivity: null
-
   },
   mutations: {
     addToFavorite(state, payload) {
@@ -26,10 +25,6 @@ export default new Vuex.Store({
         state.user.userActivities[0].favorited.push(payload.activity);
       }
       storageService.saveToStorage(userKey, state.user);
-    },
-    loadActivities: (state, payload) => {
-      state.activitiesForDisplay = payload.activities
-
     },
     connectUser(state, payload) {
       state.isConnected = true;
@@ -54,22 +49,37 @@ export default new Vuex.Store({
       let newActivity = activityService.createActivity(currActivity);
       state.currActivity.unshift(newActivity);
     },
-    bookAnActivity(state,payload)
-    {
-  
+    bookAnActivity(state, payload) {
       state.user.userActivities[1].attended.push(payload.activity);
- 
+    },
+    removeFromActivity(state, payload) {
+      console.log('Hello from store',payload.activity.id);
+      let activityTypeId = payload.activity.id;
+      let userActivitiesType;
+      if (activityTypeId === 0 ) {
+        userActivitiesType = state.user.userActivities[activityTypeId].favorited;
+      } else {
+        userActivitiesType = state.user.userActivities[activityTypeId].attended;
+      }
+      let length = userActivitiesType.length;
+      let searchId = payload.activity.activityIdx;
+      for (let index = 0; index < length; index++){
+        if(userActivitiesType[index].googleId === searchId){
+          let remove = userActivitiesType.splice(index ,1);
+          console.log('remove index ' ,remove);
+          storageService.saveToStorage(userKey, state.user);
+          break; 
+        }
+      }
     }
-    
+
   },
   getters: {
-    userAttendedActivities(state)
-    {
+    userAttendedActivities(state) {
       return state.user.userActivities[1]
     }
     ,
-    userFavoritedActivities(state)
-    {
+    userFavoritedActivities(state) {
       return state.user.userActivities[0]
     }
     ,
@@ -85,17 +95,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    updateUser(context,payload)
-    {
-      let curUser=context.getters.user;
+    updateUser(context, payload) {
+      let curUser = context.getters.user;
       userService.update(curUser);
     },
-    bookAnActivity(context,payload){
-   
+    bookAnActivity(context, payload) {
+
       context.commit({ type: 'bookAnActivity', activity: payload.activity });
     },
     userCount(context, payload) {
-      
+
       EventBus.$emit('usercount', payload.online);
     },
     bookedActivity(context, payload) {
@@ -150,6 +159,12 @@ export default new Vuex.Store({
       //   context.commit({ type: 'setNewPlace', place })
       // })
     },
+    removeFavFromActivity(context, payload) {
+      context.commit({ type: 'removeFromActivity', activity:{ id: 0,  activityIdx:payload} })
+    },
+    removeBookedFromActivity(context,payload) {
+      context.commit({ type: 'removeFromActivity', activity:{ id: 1,  activityIdx:payload} })
+    }
   }
 
 })
