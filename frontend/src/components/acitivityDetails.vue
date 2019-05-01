@@ -3,7 +3,7 @@
   <div class="wrapper">
     <div class="activity flex">
       <div>
-        <img class="main-img" :src="activity.imgs[0]">
+        <img class="main-img" :src="activity.imgs">
       </div>
       <div class="info">
         <p class="type">{{activity.type}}</p>
@@ -16,11 +16,13 @@
           style="margin-left: -6px;"
         >
         <span>{{activity.address}}</span>
-        <star-rating
-          class="star"
-          v-model="activity.rating"
-          round-start-rating="true"
-          :star-size="20"
+        <star-rating 
+          :rating="activity.rating"
+          :inline="false" 
+          :star-size="20" 
+          :read-only="true" 
+          :show-rating="true"
+          :round-start-rating="false"
         ></star-rating>
         <p>rated : {{activity.ratingCount}} times</p>
         <div class="about">
@@ -38,7 +40,7 @@
       </div>
     </div>
 
-    <main class="flex">
+    <div class="flex">
       <div class="side-reviews">
         <h1>Guest reviews</h1>
         <h2>{{activity.rating}} star rating</h2>
@@ -46,37 +48,60 @@
       <div class="reviews-section">
         <div class="review-item">
           <div class="user-details flex">
-            <img src="https://res.cloudinary.com/explority/image/upload/v1556370947/review1_ckvqym.jpg">
+            <img
+              src="https://res.cloudinary.com/explority/image/upload/v1556370947/review1_ckvqym.jpg"
+            >
             <div class="user-name">
               <h3>Mariah Davidson</h3>
-              <star-rating v-model="activity.rating" round-start-rating="true" :star-size="20"></star-rating>
+              <star-rating 
+              :rating="activity.rating"
+              :inline="true" 
+              :star-size="20" 
+              :read-only="true" 
+              :show-rating="false"
+              ></star-rating>
             </div>
           </div>
           <p>This tour was amazing. I had a great time even though it was raining during our tour. Mayno is such a sweet lady... she gave me a gift, she’s very polite and she really made sure that I would enjoy the whole kawaii experience in Harajuku.</p>
         </div>
         <div class="review-item">
           <div class="user-details flex">
-            <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/review2_acdcli.jpg">
+            <img
+              src="https://res.cloudinary.com/explority/image/upload/v1556370946/review2_acdcli.jpg"
+            >
             <div class="user-name">
               <h3>Dan Brodvick</h3>
-              <star-rating v-model="activity.rating" round-start-rating="true" :star-size="20"></star-rating>
+              <star-rating 
+              :rating="activity.rating"
+              :inline="true" 
+              :star-size="20" 
+              :read-only="true" 
+              :show-rating="false"
+              ></star-rating>
             </div>
           </div>
           <p>My wife and I wanted to experience the Kawaii culture and Mayno did such a great job showing us around. She was so nice - It was pouring rain and she moved the time around so we would be able to enjoy the tour without the rain.</p>
         </div>
         <div class="review-item">
           <div class="user-details flex">
-            <img src="https://res.cloudinary.com/explority/image/upload/v1556370946/review3_up4ryd.jpg">
+            <img
+              src="https://res.cloudinary.com/explority/image/upload/v1556370946/review3_up4ryd.jpg"
+            >
             <div class="user-name">
               <h3>Sarah Atir</h3>
-              <star-rating v-model="activity.rating" round-start-rating="true" :star-size="20"></star-rating>
+              <star-rating 
+              :rating="activity.rating"
+              :inline="true" 
+              :star-size="20" 
+              :read-only="true" 
+              :show-rating="false"
+              ></star-rating>
             </div>
           </div>
           <p>sweet lady... she gave me a gift, she’s very polite and she really made sure that I would enjoy the whole kawaii experience in Harajuku. We went to different cute stores... all of them were unique.</p>
         </div>
       </div>
-
-    </main>
+    </div>
     <div class="my-comment flex">
       <div class="side-leave-comment">
         <h1>Leave a Comment!</h1>
@@ -118,8 +143,7 @@ export default {
       },
       showRating: false,
       isConnect: this.$store.getters.isConnected,
-      addReview: false,
-      activity: {}
+      addReview: false
     };
   },
   mounted() {
@@ -137,7 +161,7 @@ export default {
   methods: {
     sendMessage(e) {
       e.preventDefault();
-    }
+    },
   },
   components: {
     StarRating

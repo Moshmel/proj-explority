@@ -53,7 +53,6 @@ export default new Vuex.Store({
       state.user.userActivities[1].attended.push(payload.activity);
     },
     removeFromActivity(state, payload) {
-      console.log('Hello from store',payload.activity.id);
       let activityTypeId = payload.activity.id;
       let userActivitiesType;
       if (activityTypeId === 0 ) {
@@ -68,6 +67,7 @@ export default new Vuex.Store({
           let remove = userActivitiesType.splice(index ,1);
           console.log('remove index ' ,remove);
           storageService.saveToStorage(userKey, state.user);
+          userService.update(state.user);
           break; 
         }
       }
@@ -95,7 +95,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    updateUser(context, payload) {
+    updateUser(context) {
       let curUser = context.getters.user;
       userService.update(curUser);
     },
@@ -112,16 +112,13 @@ export default new Vuex.Store({
       EventBus.$emit('sendpupup');
     },
     onbooked(context, payload) {
-
       socketService.emit('booked', { booked: 'bookkk!!' })
-
     },
     addToFavorite(context, payload) {
       console.log(payload.activity)
       context.commit({ type: 'addToFavorite', activity: payload.activity });
     },
     loadFourActivities(context) {
-
       activityService.query()
         .then((activities) => {
           context.commit({ type: 'loadActivities', activities: activities.slice(0, 4) })
@@ -136,7 +133,6 @@ export default new Vuex.Store({
         })
     },
     loadActivity(context, id) {
-
       activityService.getById(id).then(res => {
         context.commit('loadActivity', res)
       })
