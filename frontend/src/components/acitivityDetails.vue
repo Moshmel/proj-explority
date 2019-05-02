@@ -1,7 +1,7 @@
 
 <template>
   <div class="wrapper">
-    <div class="activity flex">
+    <div class="activity grid">
       <div>
         <img class="main-img" :src="activity.imgs">
       </div>
@@ -16,11 +16,11 @@
           style="margin-left: -6px;"
         >
         <span>{{activity.address}}</span>
-        <star-rating 
+        <star-rating
           :rating="activity.rating"
-          :inline="false" 
-          :star-size="20" 
-          :read-only="true" 
+          :inline="false"
+          :star-size="20"
+          :read-only="true"
           :show-rating="true"
           :round-start-rating="false"
         ></star-rating>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="flex">
+    <div class="grid">
       <div class="side-reviews">
         <h1>Guest reviews</h1>
         <h2>{{activity.rating}} star rating</h2>
@@ -53,12 +53,12 @@
             >
             <div class="user-name">
               <h3>Mariah Davidson</h3>
-              <star-rating 
-              :rating="activity.rating"
-              :inline="true" 
-              :star-size="20" 
-              :read-only="true" 
-              :show-rating="false"
+              <star-rating
+                :rating="activity.rating"
+                :inline="true"
+                :star-size="20"
+                :read-only="true"
+                :show-rating="false"
               ></star-rating>
             </div>
           </div>
@@ -71,12 +71,12 @@
             >
             <div class="user-name">
               <h3>Dan Brodvick</h3>
-              <star-rating 
-              :rating="activity.rating"
-              :inline="true" 
-              :star-size="20" 
-              :read-only="true" 
-              :show-rating="false"
+              <star-rating
+                :rating="activity.rating"
+                :inline="true"
+                :star-size="20"
+                :read-only="true"
+                :show-rating="false"
               ></star-rating>
             </div>
           </div>
@@ -89,12 +89,12 @@
             >
             <div class="user-name">
               <h3>Sarah Atir</h3>
-              <star-rating 
-              :rating="activity.rating"
-              :inline="true" 
-              :star-size="20" 
-              :read-only="true" 
-              :show-rating="false"
+              <star-rating
+                :rating="activity.rating"
+                :inline="true"
+                :star-size="20"
+                :read-only="true"
+                :show-rating="false"
               ></star-rating>
             </div>
           </div>
@@ -107,7 +107,7 @@
         <h1>Leave a Comment!</h1>
       </div>
       <div class="leave-comment">
-        <div class="review-title-section flex">
+        <div class="review-title-section grid">
           <input v-model="newReview.title" type="text" placeholder="Title">
         </div>
         <star-rating class="star" v-model="newReview.rating" :star-size="20"></star-rating>
@@ -161,7 +161,7 @@ export default {
   methods: {
     sendMessage(e) {
       e.preventDefault();
-    },
+    }
   },
   components: {
     StarRating
@@ -322,6 +322,7 @@ textarea {
 }
 .info {
   margin-left: 42px;
+  width: 40vw;
 }
 .title {
   font-size: 46px;
@@ -330,9 +331,44 @@ textarea {
 }
 .activity {
   margin-bottom: 84px;
+  grid-template-columns: 1fr 50vw;
+  grid-template-rows: auto;
 }
 .main-img {
-  width: 420px;
-  height: 558px;
+  width: 100%;
+  height: auto;
 }
+
+@media screen and (max-width: 768px){
+  .activity {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .info {
+    width: 80vw;
+  }
+  .side-reviews:first-child {
+    height: 100px;
+  }
+  .review-item {
+    width: 85vw;
+  }
+  .my-comment{
+    display: grid;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .info {
+    margin-left: 0px;
+    width: 90vw;
+  }
+  .review-item {
+    height: auto;
+  }
+  .review-item p {
+    width: 80vw;
+  }
+}
+
 </style>
